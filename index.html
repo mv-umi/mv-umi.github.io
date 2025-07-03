@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="MV-UMI: A Scalable Multi-View Interface for Cross-Embodiment Learning.">
+  <meta name="keywords" content="Nerfies, D-NeRF, NeRF">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MV UMI</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="data:,">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+
+
+          <h1 class="title is-2 publication-title">
+            <span style="color: #6e07b3;">MV-UMI</span>: A Scalable Multi-View Interface for Cross-Embodiment Learning
+          </h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      
+      
+      <table style="width: 100%; border-collapse: collapse; border: none; margin-bottom: 20px;">
+        <!-- First header row -->
+        <tr>
+          <td style="border: none; text-align: center; padding: 10px; width: 33.33%; padding-bottom: 2px;">
+            <h3 style="color: rgb(194, 35, 35); margin-bottom: 0px; font-size: Large;">Human Aligned</h3>
+          </td>
+          <td colspan="2" style="border: none; text-align: center; padding: 10px; width: 66.67%; padding-bottom: 2px;">
+            <h3 style="color: rgb(19, 170, 39); margin-bottom: 0px; font-size: Large;">Embodiment Agnostic</h3>
+          </td>
+        </tr>
+      
+        <!-- Second header row -->
+        <tr>
+          <td style="border: none; text-align: center; padding: 10px; padding-top: 5px; padding-bottom: 5px">
+            <h3 style="color: black; margin-bottom: 0; font-size: large;">Egocentric View</h3>
+          </td>
+          <td style="border: none; text-align: center; padding: 10px; padding-top: 5px; padding-bottom: 5px;">
+            <h3 style="color: black; margin-bottom: 0; font-size: large">1st-Person View</h3>
+          </td>
+          <td style="border: none; text-align: center; padding: 10px; padding-top: 5px; padding-bottom: 5px">
+            <h3 style="color: black; margin-bottom: 0; font-size: large">3rd-Person View</h3>
+          </td>
+        </tr>
+      
+        <!-- Video rows -->
+        <tr id="video-row-1" class="video-row" data-scene="outdoors">
+          <td style="border: none; text-align: center; padding: 10px;">
+            <video class="scene-video" muted playsinline style="height: 200px; width: auto;">
+              <source src="outdoors/raw.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </td>
+          <td style="border: none; text-align: center; padding: 10px;">
+            <video class="scene-video" muted playsinline style="height: 200px; width: auto;">
+              <source src="outdoors/pov.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </td>
+          <td style="border: none; text-align: center; padding: 10px;">
+            <video class="scene-video" muted playsinline style="height: 200px; width: auto;">
+              <source src="outdoors/seg.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </td>
+        </tr>
+
+        <tr id="video-row-2" class="video-row" data-scene="kitchen" style="display: none;">
+          <td style="border: none; text-align: center; padding: 10px;">
+            <video class="scene-video" muted playsinline style="height: 200px; width: auto;">
+              <source src="kitchen/raw.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </td>
+          <td style="border: none; text-align: center; padding: 10px;">
+            <video class="scene-video" muted playsinline style="height: 200px; width: auto;">
+              <source src="kitchen/pov.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </td>
+          <td style="border: none; text-align: center; padding: 10px;">
+            <video class="scene-video" muted playsinline style="height: 200px; width: auto;">
+              <source src="kitchen/seg.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </td>
+        </tr>
+
+        <tr id="video-row-3" class="video-row" data-scene="c3" style="display: none;">
+          <td style="border: none; text-align: center; padding: 10px;">
+            <video class="scene-video" muted playsinline style="height: 200px; width: auto;">
+              <source src="c3/raw.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </td>
+          <td style="border: none; text-align: center; padding: 10px;">
+            <video class="scene-video" muted playsinline style="height: 200px; width: auto;">
+              <source src="c3/pov.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </td>
+          <td style="border: none; text-align: center; padding: 10px;">
+            <video class="scene-video" muted playsinline style="height: 200px; width: auto;">
+              <source src="c3/seg.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </td>
+        </tr>
+
+        <tr id="video-row-4" class="video-row" data-scene="b2" style="display: none;">
+          <td style="border: none; text-align: center; padding: 10px;">
+            <video class="scene-video" muted playsinline style="height: 200px; width: auto;">
+              <source src="b2/raw.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </td>
+          <td style="border: none; text-align: center; padding: 10px;">
+            <video class="scene-video" muted playsinline style="height: 200px; width: auto;">
+              <source src="b2/pov.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </td>
+          <td style="border: none; text-align: center; padding: 10px;">
+            <video class="scene-video" muted playsinline style="height: 200px; width: auto;">
+              <source src="b2/seg.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </td>
+        </tr>
+
+        <tr id="video-row-4" class="video-row" data-scene="bottles" style="display: none;">
+          <td style="border: none; text-align: center; padding: 10px;">
+            <video class="scene-video" muted playsinline style="height: 200px; width: auto;">
+              <source src="bottles/raw.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </td>
+          <td style="border: none; text-align: center; padding: 10px;">
+            <video class="scene-video" muted playsinline style="height: 200px; width: auto;">
+              <source src="bottles/pov.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </td>
+          <td style="border: none; text-align: center; padding: 10px;">
+            <video class="scene-video" muted playsinline style="height: 200px; width: auto;">
+              <source src="bottles/seg.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </td>
+        </tr>
+
+        <tr id="video-row-4" class="video-row" data-scene="cans" style="display: none;">
+          <td style="border: none; text-align: center; padding: 10px;">
+            <video class="scene-video" muted playsinline style="height: 200px; width: auto;">
+              <source src="cans/raw.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </td>
+          <td style="border: none; text-align: center; padding: 10px;">
+            <video class="scene-video" muted playsinline style="height: 200px; width: auto;">
+              <source src="cans/pov.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </td>
+          <td style="border: none; text-align: center; padding: 10px;">
+            <video class="scene-video" muted playsinline style="height: 200px; width: auto;">
+              <source src="cans/seg.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </td>
+        </tr>
+
+
+        
+      </table>
+
+      
+      
+      <!-- Optional subtitle -->
+      <h2 class="subtitle has-text-centered">
+        <span class="dnerf">MV-UMI</span> turns <b>human-aligned</b> data to embodiment-agnostic data for robot policy learning.
+      </h2>
+
+      <!-- Robot Deployment Section -->
+      <div style="margin-top: 30px; text-align: center;">
+        <h3 style="color: #0647af; margin-bottom: 30px; font-size: Large;">Robot Deployment</h3>
+        <div id="robot-deploy-videos" style="display: flex; justify-content: center; gap: 30px;"></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<section class="section" style="padding-top: 0;">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+             Recent advances in imitation learning have shown great promise for developing robust robot manipulation policies using collected demonstrations. However, this promise is contingent on the availability of diverse, high-quality demonstration datasets, which remain challenging and costly to gather. Portable handheld grippers have recently emerged as intuitive and scalable alternatives to traditional robotic teleoperation methods for data collection, but their reliance solely on wrist-mounted cameras poses limitations in capturing large scene contexts. In this paper, we introduce MV-UMI (Multi-View Universal Manipulation Interface), a framework that integrates a wrist-mounted camera with a third-person perspective to overcome these limitations. This integration not only mitigates domain shifts between human demonstration and robot deployment but also preserves the cross-embodiment advantages of handheld data-collection devices. Additionally, we present a new modular three-jawed handheld gripper weighing 0.39 kg, which offers enhanced load capacity and dexterity, and is capable of lifting objects up to three times its own weight. Experimental results demonstrate that our framework improves performance in sub-tasks requiring broad scene understanding by approximately 47%, confirming the effectiveness of our approach in expanding the range of feasible manipulation tasks that can be demonstrated and learned using handheld gripper systems.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+    <!-- Paper video. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Pipeline</h2>
+        <img src="./static/images/pipeline.jpg"
+        alt="Nerfies teaser image"
+        class="teaser-image">
+      </div>
+    </div>
+    <!--/ Paper video. -->
+
+    <!-- Results Section -->
+    <div class="columns is-centered has-text-centered" style="margin-top: 40px;">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Results</h2>
+        <div class="results-grid" style="display: grid; grid-template-columns: 1fr 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 24px; justify-items: center; align-items: center; margin-top: 24px;">
+          <!-- Row 1 -->
+          <div class="results-cell" style="width: 100%; min-height: 180px; display: flex; align-items: center; justify-content: center; background: none; border: none; border-radius: 0;">
+            <img src="task_bottles.jpg" alt="Task Bottles" style="max-width: 95%; max-height: 160px; object-fit: contain;" />
+          </div>
+          <div class="results-cell" style="width: 100%; min-height: 180px; display: flex; align-items: center; justify-content: center; background: none; border: none; border-radius: 0;">
+            <img src="task_cans.jpg" alt="Task Cans" style="max-width: 95%; max-height: 160px; object-fit: contain;" />
+          </div>
+          <div class="results-cell" style="width: 100%; min-height: 180px; display: flex; align-items: center; justify-content: center; background: none; border: none; border-radius: 0;">
+            <!-- Add your image here -->
+            <span style="color: #bbb; font-size: 1.1em;">Add photo 3</span>
+          </div>
+          <!-- Row 2 -->
+          <div class="results-cell" style="width: 100%; min-height: 180px; display: flex; align-items: center; justify-content: center; background: none; border: none; border-radius: 0;">
+            <!-- Add your image here -->
+            <img src="results_bottles.jpg" alt="Results Bottles" style="max-width: 95%; max-height: 160px; object-fit: contain;" />
+          </div>
+          <div class="results-cell" style="width: 100%; min-height: 180px; display: flex; align-items: center; justify-content: center; background: none; border: none; border-radius: 0;">
+            <!-- Add your image here -->
+            <img src="results_cans.jpg" alt="Results Bottles" style="max-width: 95%; max-height: 160px; object-fit: contain;" />
+          </div>
+          <div class="results-cell" style="width: 100%; min-height: 180px; display: flex; align-items: center; justify-content: center; background: none; border: none; border-radius: 0;">
+            <!-- Add your image here -->
+            <span style="color: #bbb; font-size: 1.1em;">Add photo 6</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Mechanical Design</h2>
+        <p>
+          The design of MV-UMI is intended to be modular. Mounts are designed for the gripper, allowing it to be used handheld or when attached to a robot. 
+        </p>
+        <!-- <div style="display: flex; justify-content: center; gap: 20px; margin: 20px 0;">
+          <img src="./static/images/franka.jpg" alt="Franka-mounted MV-UMI" style="width: 45%; height: auto;">
+          <img src="./static/images/handheld_shot.png" style="width: 45%; height: auto;">
+        </div> -->
+        <!-- <p>
+          All CAD models, as well as ROS drivers for the motors, are available on our Github page.
+        </p>  -->
+        <div style="background-color: #f5f5f5; border-left: 4px solid #6e07b3; padding: 20px; margin: 20px 0; border-radius: 4px;">
+          <h4 style="margin: 0 0 10px 0; color: #6e07b3; font-size: 1.2em;">
+            <i class="fab fa-github" style="margin-right: 8px;"></i>Hardware Repository
+          </h4>
+          <a href="" style="font-size: 1.1em; color: #0366d6; text-decoration: none;">
+            (coming soon!)
+          </a>
+        </div>
+        <p>
+          This includes the CAD models necessary to print the handheld and robot-operated configurations of our three-jaw gripper.
+        </p>
+        <div style="display: flex; justify-content: center; gap: 20px; margin-top: 20px;">
+          <figure style="width: 45%; margin: 0;">
+            <img src="./static/images/handheld.png" style="width: 100%; height: auto;">
+            <figcaption style="text-align: center; margin-top: 10px;">Handheld Configuration</figcaption>
+          </figure>
+          <figure style="width: 45%; margin: 0;">
+            <img src="./static/images/motorized.png" style="width: 100%; height: auto;">
+            <figcaption style="text-align: center; margin-top: 10px;">Motorized Configuration</figcaption>
+          </figure>
+        </div>
+        <p>
+            We also include a moodified version of the two-gripper <a href="https://umi-gripper.github.io/">UMI</a>, which allows it to be controlled these affordable linear motors.  
+        </p>
+        <figure style="margin: 20px auto; width: 80%;">
+          <div style="overflow: hidden; position: relative; width: 100%; padding-bottom: 45%;">
+            <video autoplay loop muted playsinline style="position: absolute; top: -5%; left: -10%; width: 120%; height: 110%; object-fit: cover;">
+              <source src="./static/videos/umi_motorized_cropped.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <figcaption style="text-align: center; margin-top: 10px;">Modified UMI with Linear Motor Control</figcaption>
+        </figure>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            This website template is ported from <a href="https://nerfies.github.io/">Nerfies</a>. We thank <a href="https://github.com/keunhong">Keunhong Park</a> for open-sourcing the website template.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
