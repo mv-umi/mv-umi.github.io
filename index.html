@@ -65,13 +65,13 @@
         <!-- Second header row -->
         <tr>
           <td style="border: none; text-align: center; padding: 10px; padding-top: 5px; padding-bottom: 5px">
-            <h3 style="color: black; margin-bottom: 0; font-size: large;">Egocentric View</h3>
+            <h3 style="color: black; margin-bottom: 0; font-size: large;">3rd-Person View</h3>
           </td>
           <td style="border: none; text-align: center; padding: 10px; padding-top: 5px; padding-bottom: 5px;">
             <h3 style="color: black; margin-bottom: 0; font-size: large">1st-Person View</h3>
           </td>
           <td style="border: none; text-align: center; padding: 10px; padding-top: 5px; padding-bottom: 5px">
-            <h3 style="color: black; margin-bottom: 0; font-size: large">3rd-Person View</h3>
+            <h3 style="color: black; margin-bottom: 0; font-size: large">Processed View</h3>
           </td>
         </tr>
       
@@ -212,12 +212,113 @@
       <h2 class="subtitle has-text-centered">
         <span class="dnerf">MV-UMI</span> turns <b>human-aligned</b> data to embodiment-agnostic data for robot policy learning.
       </h2>
+      <div style="display: flex; justify-content: center; margin: 18px 0 32px 0;">
+        <img src="cross.jpg" alt="Cross Embodiment Illustration" style="max-width: 420px; width: 100%; height: auto;" />
+      </div>
+      </h2>
 
       <!-- Robot Deployment Section -->
       <div style="margin-top: 30px; text-align: center;">
         <h3 style="color: #0647af; margin-bottom: 30px; font-size: Large;">Robot Deployment</h3>
         <div id="robot-deploy-videos" style="display: flex; justify-content: center; gap: 30px;"></div>
       </div>
+      <script>
+        // Hardcoded list of .mp4 files in results/
+        const deploymentVideos = [
+          'results/1.mp4',
+          'results/2.mp4',
+          'results/3.mp4',
+          'results/4.mp4',
+          'results/5.mp4',
+          'results/6.mp4',
+          'results/7.mp4',
+          'results/8.mp4',
+          'results/9.mp4',
+          'results/10.mp4',
+          'results/11.mp4',
+        ];
+
+        function getTwoDistinctRandomVideos(videos) {
+          if (videos.length < 2) return [videos[0], null];
+          let firstIdx = Math.floor(Math.random() * videos.length);
+          let secondIdx;
+          do {
+            secondIdx = Math.floor(Math.random() * videos.length);
+          } while (secondIdx === firstIdx);
+          return [videos[firstIdx], videos[secondIdx]];
+        }
+
+        function setupDeploymentVideosSideBySide() {
+          const container = document.getElementById('robot-deploy-videos');
+          container.innerHTML = '';
+          if (deploymentVideos.length < 2) {
+            container.innerHTML = '<span style="color: #b00;">Need at least two deployment videos.</span>';
+            return;
+          }
+          let [currentVideo1, currentVideo2] = getTwoDistinctRandomVideos(deploymentVideos);
+
+          function createVideoElement(src, onendedCallback) {
+            const video = document.createElement('video');
+            video.src = src;
+            video.style.height = '200px';
+            video.style.width = 'auto';
+            video.style.borderRadius = '0';
+            video.autoplay = true;
+            video.muted = true;
+            video.playsInline = true;
+            video.controls = false;
+            video.onended = onendedCallback;
+            video.onerror = function() {
+              video.style.display = 'none';
+              const errorMsg = document.createElement('span');
+              errorMsg.style.color = '#b00';
+              errorMsg.textContent = 'Could not load video: ' + src;
+              container.appendChild(errorMsg);
+            };
+            return video;
+          }
+
+          const video1 = createVideoElement(currentVideo1, function() {
+            let next;
+            do {
+              next = deploymentVideos[Math.floor(Math.random() * deploymentVideos.length)];
+            } while (next === currentVideo1 || next === currentVideo2);
+            currentVideo1 = next;
+            // Ensure not the same as video2
+            if (currentVideo1 === currentVideo2) {
+              // Find another
+              do {
+                currentVideo1 = deploymentVideos[Math.floor(Math.random() * deploymentVideos.length)];
+              } while (currentVideo1 === currentVideo2);
+            }
+            video1.src = currentVideo1;
+            video1.load();
+            video1.play();
+          });
+
+          const video2 = createVideoElement(currentVideo2, function() {
+            let next;
+            do {
+              next = deploymentVideos[Math.floor(Math.random() * deploymentVideos.length)];
+            } while (next === currentVideo2 || next === currentVideo1);
+            currentVideo2 = next;
+            // Ensure not the same as video1
+            if (currentVideo2 === currentVideo1) {
+              // Find another
+              do {
+                currentVideo2 = deploymentVideos[Math.floor(Math.random() * deploymentVideos.length)];
+              } while (currentVideo2 === currentVideo1);
+            }
+            video2.src = currentVideo2;
+            video2.load();
+            video2.play();
+          });
+
+          container.appendChild(video1);
+          container.appendChild(video2);
+        }
+        document.addEventListener('DOMContentLoaded', setupDeploymentVideosSideBySide);
+      </script>
 
     </div>
   </div>
