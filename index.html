@@ -28,18 +28,14 @@
 </head>
 <body>
 
-
-<section class="hero">
-  <div class="hero-body">
+<section class="hero" >
+    <div class="hero-body" style="padding-bottom: 5;">
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-
-
           <h1 class="title is-2 publication-title">
             <span style="color: #6e07b3;">MV-UMI</span>: A Scalable Multi-View Interface for Cross-Embodiment Learning
           </h1>
-          </div>
         </div>
       </div>
     </div>
@@ -49,7 +45,6 @@
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
-      
       
       <table style="width: 100%; border-collapse: collapse; border: none; margin-bottom: 20px;">
         <!-- First header row -->
@@ -70,265 +65,400 @@
           <td style="border: none; text-align: center; padding: 10px; padding-top: 5px; padding-bottom: 5px;">
             <h3 style="color: black; margin-bottom: 0; font-size: large">1st-Person View</h3>
           </td>
-          <td style="border: none; text-align: center; padding: 10px; padding-top: 5px; padding-bottom: 5px">
+          <td style="border: none; text-align: center; padding: 10px; padding-top: 5px; padding-bottom: 5px;">
             <h3 style="color: black; margin-bottom: 0; font-size: large">Processed View</h3>
           </td>
         </tr>
       
-        <!-- Video rows -->
-        <tr id="video-row-1" class="video-row" data-scene="outdoors">
+        <!-- Video rows with unique IDs -->
+        <tr id="video-row-outdoors" class="video-row" data-scene="outdoors">
           <td style="border: none; text-align: center; padding: 10px;">
-            <video class="scene-video" muted playsinline style="height: 200px; width: auto;">
-              <source src="outdoors/raw.mp4" type="video/mp4">
+            <video class="scene-video" muted playsinline preload="auto" style="height: 220px; width: auto;">
+              <source src="data_collection_videos/outdoors/raw.mp4" type="video/mp4">
               Your browser does not support the video tag.
             </video>
           </td>
           <td style="border: none; text-align: center; padding: 10px;">
-            <video class="scene-video" muted playsinline style="height: 200px; width: auto;">
-              <source src="outdoors/pov.mp4" type="video/mp4">
+            <video class="scene-video" muted playsinline preload="auto" style="height: 220px; width: auto;">
+              <source src="data_collection_videos/outdoors/pov.mp4" type="video/mp4">
               Your browser does not support the video tag.
             </video>
           </td>
           <td style="border: none; text-align: center; padding: 10px;">
-            <video class="scene-video" muted playsinline style="height: 200px; width: auto;">
-              <source src="outdoors/seg.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-          </td>
-        </tr>
-
-        <tr id="video-row-2" class="video-row" data-scene="kitchen" style="display: none;">
-          <td style="border: none; text-align: center; padding: 10px;">
-            <video class="scene-video" muted playsinline style="height: 200px; width: auto;">
-              <source src="kitchen/raw.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-          </td>
-          <td style="border: none; text-align: center; padding: 10px;">
-            <video class="scene-video" muted playsinline style="height: 200px; width: auto;">
-              <source src="kitchen/pov.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-          </td>
-          <td style="border: none; text-align: center; padding: 10px;">
-            <video class="scene-video" muted playsinline style="height: 200px; width: auto;">
-              <source src="kitchen/seg.mp4" type="video/mp4">
+            <video class="scene-video" muted playsinline preload="auto" style="height: 220px; width: auto;">
+              <source src="data_collection_videos/outdoors/seg.mp4" type="video/mp4">
               Your browser does not support the video tag.
             </video>
           </td>
         </tr>
 
-        <tr id="video-row-3" class="video-row" data-scene="c3" style="display: none;">
+        <tr id="video-row-kitchen" class="video-row" data-scene="kitchen" style="display: none;">
           <td style="border: none; text-align: center; padding: 10px;">
-            <video class="scene-video" muted playsinline style="height: 200px; width: auto;">
-              <source src="c3/raw.mp4" type="video/mp4">
+            <video class="scene-video" muted playsinline preload="auto" style="height: 220px; width: auto;">
+              <source src="data_collection_videos/kitchen/raw.mp4" type="video/mp4">
               Your browser does not support the video tag.
             </video>
           </td>
           <td style="border: none; text-align: center; padding: 10px;">
-            <video class="scene-video" muted playsinline style="height: 200px; width: auto;">
-              <source src="c3/pov.mp4" type="video/mp4">
+            <video class="scene-video" muted playsinline preload="auto" style="height: 220px; width: auto;">
+              <source src="data_collection_videos/kitchen/pov.mp4" type="video/mp4">
               Your browser does not support the video tag.
             </video>
           </td>
           <td style="border: none; text-align: center; padding: 10px;">
-            <video class="scene-video" muted playsinline style="height: 200px; width: auto;">
-              <source src="c3/seg.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-          </td>
-        </tr>
-
-        <tr id="video-row-4" class="video-row" data-scene="b2" style="display: none;">
-          <td style="border: none; text-align: center; padding: 10px;">
-            <video class="scene-video" muted playsinline style="height: 200px; width: auto;">
-              <source src="b2/raw.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-          </td>
-          <td style="border: none; text-align: center; padding: 10px;">
-            <video class="scene-video" muted playsinline style="height: 200px; width: auto;">
-              <source src="b2/pov.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-          </td>
-          <td style="border: none; text-align: center; padding: 10px;">
-            <video class="scene-video" muted playsinline style="height: 200px; width: auto;">
-              <source src="b2/seg.mp4" type="video/mp4">
+            <video class="scene-video" muted playsinline preload="auto" style="height: 220px; width: auto;">
+              <source src="data_collection_videos/kitchen/seg.mp4" type="video/mp4">
               Your browser does not support the video tag.
             </video>
           </td>
         </tr>
 
-        <tr id="video-row-4" class="video-row" data-scene="bottles" style="display: none;">
+        <tr id="video-row-c3" class="video-row" data-scene="c3" style="display: none;">
           <td style="border: none; text-align: center; padding: 10px;">
-            <video class="scene-video" muted playsinline style="height: 200px; width: auto;">
-              <source src="bottles/raw.mp4" type="video/mp4">
+            <video class="scene-video" muted playsinline preload="auto" style="height: 220px; width: auto;">
+              <source src="data_collection_videos/c3/raw.mp4" type="video/mp4">
               Your browser does not support the video tag.
             </video>
           </td>
           <td style="border: none; text-align: center; padding: 10px;">
-            <video class="scene-video" muted playsinline style="height: 200px; width: auto;">
-              <source src="bottles/pov.mp4" type="video/mp4">
+            <video class="scene-video" muted playsinline preload="auto" style="height: 220px; width: auto;">
+              <source src="data_collection_videos/c3/pov.mp4" type="video/mp4">
               Your browser does not support the video tag.
             </video>
           </td>
           <td style="border: none; text-align: center; padding: 10px;">
-            <video class="scene-video" muted playsinline style="height: 200px; width: auto;">
-              <source src="bottles/seg.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-          </td>
-        </tr>
-
-        <tr id="video-row-4" class="video-row" data-scene="cans" style="display: none;">
-          <td style="border: none; text-align: center; padding: 10px;">
-            <video class="scene-video" muted playsinline style="height: 200px; width: auto;">
-              <source src="cans/raw.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-          </td>
-          <td style="border: none; text-align: center; padding: 10px;">
-            <video class="scene-video" muted playsinline style="height: 200px; width: auto;">
-              <source src="cans/pov.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-          </td>
-          <td style="border: none; text-align: center; padding: 10px;">
-            <video class="scene-video" muted playsinline style="height: 200px; width: auto;">
-              <source src="cans/seg.mp4" type="video/mp4">
+            <video class="scene-video" muted playsinline preload="auto" style="height: 220px; width: auto;">
+              <source src="data_collection_videos/c3/seg.mp4" type="video/mp4">
               Your browser does not support the video tag.
             </video>
           </td>
         </tr>
 
+        <tr id="video-row-b2" class="video-row" data-scene="b2" style="display: none;">
+          <td style="border: none; text-align: center; padding: 10px;">
+            <video class="scene-video" muted playsinline preload="auto" style="height: 220px; width: auto;">
+              <source src="data_collection_videos/b2/raw.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </td>
+          <td style="border: none; text-align: center; padding: 10px;">
+            <video class="scene-video" muted playsinline preload="auto" style="height: 220px; width: auto;">
+              <source src="data_collection_videos/b2/pov.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </td>
+          <td style="border: none; text-align: center; padding: 10px;">
+            <video class="scene-video" muted playsinline preload="auto" style="height: 220px; width: auto;">
+              <source src="data_collection_videos/b2/seg.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </td>
+        </tr>
 
-        
+        <tr id="video-row-bottles" class="video-row" data-scene="bottles" style="display: none;">
+          <td style="border: none; text-align: center; padding: 10px;">
+            <video class="scene-video" muted playsinline preload="auto" style="height: 220px; width: auto;">
+              <source src="data_collection_videos/bottles/raw.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </td>
+          <td style="border: none; text-align: center; padding: 10px;">
+            <video class="scene-video" muted playsinline preload="auto" style="height: 220px; width: auto;">
+              <source src="data_collection_videos/bottles/pov.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </td>
+          <td style="border: none; text-align: center; padding: 10px;">
+            <video class="scene-video" muted playsinline preload="auto" style="height: 220px; width: auto;">
+              <source src="data_collection_videos/bottles/seg.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </td>
+        </tr>
+
+        <tr id="video-row-cans" class="video-row" data-scene="cans" style="display: none;">
+          <td style="border: none; text-align: center; padding: 10px;">
+            <video class="scene-video" muted playsinline preload="auto" style="height: 220px; width: auto;">
+              <source src="data_collection_videos/cans/raw.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </td>
+          <td style="border: none; text-align: center; padding: 10px;">
+            <video class="scene-video" muted playsinline preload="auto" style="height: 220px; width: auto;">
+              <source src="data_collection_videos/cans/pov.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </td>
+          <td style="border: none; text-align: center; padding: 10px;">
+            <video class="scene-video" muted playsinline preload="auto" style="height: 220px; width: auto;">
+              <source src="data_collection_videos/cans/seg.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </td>
+        </tr>
       </table>
 
-      
-      
-      <!-- Optional subtitle -->
+      <div class="video-navigation" style="display: flex; justify-content: center; gap: 8px; margin: 20px 0;">
+        <div class="nav-dot active" data-scene="outdoors" style="width: 9px; height: 9px; border-radius: 50%; background-color: #6e07b3; cursor: pointer; transition: all 0.3s ease;"></div>
+        <div class="nav-dot" data-scene="kitchen" style="width: 9px; height: 9px; border-radius: 50%; background-color: #ddd; cursor: pointer; transition: all 0.3s ease;"></div>
+        <div class="nav-dot" data-scene="c3" style="width: 9px; height: 9px; border-radius: 50%; background-color: #ddd; cursor: pointer; transition: all 0.3s ease;"></div>
+        <div class="nav-dot" data-scene="b2" style="width: 9px; height: 9px; border-radius: 50%; background-color: #ddd; cursor: pointer; transition: all 0.3s ease;"></div>
+        <div class="nav-dot" data-scene="bottles" style="width: 9px; height: 9px; border-radius: 50%; background-color: #ddd; cursor: pointer; transition: all 0.3s ease;"></div>
+        <div class="nav-dot" data-scene="cans" style="width: 9px; height: 9px; border-radius: 50%; background-color: #ddd; cursor: pointer; transition: all 0.3s ease;"></div>
+      </div>
+
+      <script>
+        // List of scene names in order - must match the actual scenes in HTML
+        const sceneOrder = ["outdoors", "kitchen", "c3", "b2", "bottles", "cans"];
+        let currentSceneIndex = 0;
+        let autoAdvance = true;
+
+        function showScene(sceneName, manual = false) {
+          const sceneIndex = sceneOrder.indexOf(sceneName);
+          if (sceneIndex === -1) {
+            console.error(`Scene ${sceneName} not found in sceneOrder`);
+            return;
+          }
+          currentSceneIndex = sceneIndex;
+
+          // Hide all video rows
+          document.querySelectorAll('.video-row').forEach(row => {
+            row.style.display = 'none';
+          });
+
+          // Show selected scene
+          const targetRow = document.querySelector(`.video-row[data-scene="${sceneName}"]`);
+          if (targetRow) {
+            targetRow.style.display = '';
+          }
+
+          // Update dot styling
+          document.querySelectorAll('.nav-dot').forEach(dot => {
+            if (dot.dataset.scene === sceneName) {
+              dot.style.backgroundColor = '#6e07b3';
+              dot.classList.add('active');
+            } else {
+              dot.style.backgroundColor = '#ddd';
+              dot.classList.remove('active');
+            }
+          });
+
+          // Reset and start videos in the current scene
+          const currentVideos = document.querySelectorAll(`.video-row[data-scene="${sceneName}"] video`);
+          currentVideos.forEach(video => {
+            video.currentTime = 0;
+            video.play().catch(e => {
+              console.log('Video autoplay failed:', e);
+            });
+          });
+
+          // Remove previous event listeners
+          currentVideos.forEach(video => {
+            video.onended = null;
+          });
+
+          // Set up auto-advance for all scenes
+          let endedCount = 0;
+          currentVideos.forEach(video => {
+            video.onended = function() {
+              endedCount++;
+              if (endedCount === currentVideos.length && autoAdvance) {
+                advanceScene();
+              }
+            };
+          });
+        }
+
+        function advanceScene() {
+          currentSceneIndex = (currentSceneIndex + 1) % sceneOrder.length;
+          showScene(sceneOrder[currentSceneIndex]);
+        }
+
+        // Set up click handlers and initialize
+        document.addEventListener('DOMContentLoaded', function() {
+          document.querySelectorAll('.nav-dot').forEach(dot => {
+            dot.addEventListener('click', () => {
+              autoAdvance = false;
+              showScene(dot.dataset.scene, true);
+            });
+          });
+          // Initialize with the first scene and enable auto-advance
+          autoAdvance = true;
+          showScene(sceneOrder[0]);
+        });
+      </script>
+
+      <style>
+        .nav-dot:hover {
+          transform: scale(1.2);
+          background-color: #8e27d3 !important;
+        }
+        
+        .video-row {
+          transition: opacity 0.3s ease;
+        }
+        
+        video {
+          background-color: #f0f0f0;
+          border-radius: 0;
+        }
+      </style>
+
       <h2 class="subtitle has-text-centered">
-        <span class="dnerf">MV-UMI</span> turns <b>human-aligned</b> data to embodiment-agnostic data for robot policy learning.
+        <span class="dnerf">MV-UMI</span> turns <b>human-aligned</b> data to <b>cross-embodiment</b> data for robot policy learning.
       </h2>
       <div style="display: flex; justify-content: center; margin: 18px 0 32px 0;">
         <img src="cross.jpg" alt="Cross Embodiment Illustration" style="max-width: 420px; width: 100%; height: auto;" />
       </div>
       </h2>
 
-      <!-- Robot Deployment Section -->
-      <div style="margin-top: 30px; text-align: center;">
-        <h3 style="color: #0647af; margin-bottom: 30px; font-size: Large;">Robot Deployment</h3>
-        <div id="robot-deploy-videos" style="display: flex; justify-content: center; gap: 30px;"></div>
+        <!-- Cross-Embodiment Deployment Video Slider -->
+        <div style="margin-top: 32px; text-align: center; align-items: center;">
+          <h3 style="color: #0647af; margin-bottom: 20px; font-size: Large;">Cross-Embodiment Deployment</h3>
+          <table style="width: 100%; margin: 0 auto; border-collapse: collapse; border: none;">
+            <tr id="deploy-row-0" class="deploy-row">
+              <td style="border: none; text-align: center; padding: 10px;">
+<video class="deploy-video" muted playsinline preload="auto" style="height: 240px; width: auto;">
+                  <source src="results_videos/markers/success/0/0.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </td>
+              <td style="border: none; text-align: center; padding: 10px;">
+                <video class="deploy-video" muted playsinline preload="auto" style="height: 240px; width: auto;">
+                  <source src="results_videos/markers/success/0/1.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </td>
+            </tr>
+            <tr id="deploy-row-1" class="deploy-row" style="display: none;">
+              <td style="border: none; text-align: center; padding: 10px;">
+                <video class="deploy-video" muted playsinline preload="auto" style="height: 240px; width: auto;">
+                  <source src="results_videos/cans/success/0/0.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </td>
+              <td style="border: none; text-align: center; padding: 10px;">
+                <video class="deploy-video" muted playsinline preload="auto" style="height: 240px; width: auto;">
+                  <source src="results_videos/cans/success/0/1.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </td>
+            </tr>
+            <tr id="deploy-row-2" class="deploy-row" style="display: none;">
+              <td style="border: none; text-align: center; padding: 10px;">
+                <video class="deploy-video" muted playsinline preload="auto" style="height: 240px; width: auto;">
+                  <source src="results_videos/bottles/success/0/0.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </td>
+              <td style="border: none; text-align: center; padding: 10px;">
+                <video class="deploy-video" muted playsinline preload="auto" style="height: 240px; width: auto;">
+                  <source src="results_videos/bottles/success/0/1.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </td>
+            </tr>
+            <tr id="deploy-row-3" class="deploy-row" style="display: none;">
+              <td style="border: none; text-align: center; padding: 10px;">
+                <video class="deploy-video" muted playsinline preload="auto" style="height: 240px; width: auto;">
+                  <source src="results_videos/markers/success/1/0.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </td>
+              <td style="border: none; text-align: center; padding: 10px;">
+                <video class="deploy-video" muted playsinline preload="auto" style="height: 240px; width: auto;">
+                  <source src="results_videos/markers/success/1/1.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </td>
+            </tr>
+          </table>
+          <div style="display: flex; justify-content: center; gap: 8px; margin-top: 12px;">
+            <div class="deploy-nav-dot active" data-deploy="0" style="width: 9px; height: 9px; border-radius: 50%; background-color: #6e07b3; cursor: pointer; transition: all 0.3s ease;"></div>
+            <div class="deploy-nav-dot" data-deploy="1" style="width: 9px; height: 9px; border-radius: 50%; background-color: #ddd; cursor: pointer; transition: all 0.3s ease;"></div>
+            <div class="deploy-nav-dot" data-deploy="2" style="width: 9px; height: 9px; border-radius: 50%; background-color: #ddd; cursor: pointer; transition: all 0.3s ease;"></div>
+            <div class="deploy-nav-dot" data-deploy="3" style="width: 9px; height: 9px; border-radius: 50%; background-color: #ddd; cursor: pointer; transition: all 0.3s ease;"></div>
+          </div>
+        </div>
+
+        <script>
+          // Cross-Embodiment Deployment Video Slider Logic
+          const deployOrder = [0, 1, 2, 3];
+          let currentDeployIndex = 0;
+          let deployAutoAdvance = true;
+
+          function showDeploy(idx, manual = false) {
+            currentDeployIndex = idx;
+            // Hide all deploy rows
+            document.querySelectorAll('.deploy-row').forEach(row => {
+              row.style.display = 'none';
+            });
+            // Show selected row
+            const targetRow = document.getElementById(`deploy-row-${idx}`);
+            if (targetRow) targetRow.style.display = '';
+            // Update dot styling
+            document.querySelectorAll('.deploy-nav-dot').forEach((dot, i) => {
+              if (i === idx) {
+                dot.style.backgroundColor = '#6e07b3';
+                dot.classList.add('active');
+              } else {
+                dot.style.backgroundColor = '#ddd';
+                dot.classList.remove('active');
+              }
+            });
+            // Reset and start videos
+            const currentVideos = document.querySelectorAll(`#deploy-row-${idx} video`);
+            currentVideos.forEach(video => {
+              video.currentTime = 0;
+              video.play().catch(e => {});
+            });
+            // Remove previous event listeners
+            currentVideos.forEach(video => { video.onended = null; });
+            // Set up auto-advance: advance only after all videos in the row have ended (same logic as above)
+            let endedCount = 0;
+            currentVideos.forEach(video => {
+              video.onended = function() {
+                endedCount++;
+                if (endedCount === currentVideos.length && deployAutoAdvance) {
+                  advanceDeploy();
+                }
+              };
+            });
+          }
+          function advanceDeploy() {
+            currentDeployIndex = (currentDeployIndex + 1) % deployOrder.length;
+            showDeploy(deployOrder[currentDeployIndex]);
+          }
+          document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.deploy-nav-dot').forEach((dot, i) => {
+              dot.addEventListener('click', () => {
+                deployAutoAdvance = false;
+                showDeploy(i, true);
+              });
+            });
+            deployAutoAdvance = true;
+            showDeploy(deployOrder[0]);
+          });
+        </script>
+        <style>
+          .deploy-nav-dot:hover {
+            transform: scale(1.2);
+            background-color: #8e27d3 !important;
+          }
+          .deploy-row {
+            transition: opacity 0.3s ease;
+          }
+          .deploy-video {
+            background-color: #f0f0f0;
+            border-radius: 0;
+          }
+        </style>
       </div>
-      <script>
-        // Hardcoded list of .mp4 files in results/
-        const deploymentVideos = [
-          'results/1.mp4',
-          'results/2.mp4',
-          'results/3.mp4',
-          'results/4.mp4',
-          'results/5.mp4',
-          'results/6.mp4',
-          'results/7.mp4',
-          'results/8.mp4',
-          'results/9.mp4',
-          'results/10.mp4',
-          'results/11.mp4',
-          'results/12.mp4',
-          'results/13.mp4',
-          'results/14.mp4',
-          'results/15.mp4',
-          'results/16.mp4',
-          'results/17.mp4',
-        ];
-
-        function getTwoDistinctRandomVideos(videos) {
-          if (videos.length < 2) return [videos[0], null];
-          let firstIdx = Math.floor(Math.random() * videos.length);
-          let secondIdx;
-          do {
-            secondIdx = Math.floor(Math.random() * videos.length);
-          } while (secondIdx === firstIdx);
-          return [videos[firstIdx], videos[secondIdx]];
-        }
-
-        function setupDeploymentVideosSideBySide() {
-          const container = document.getElementById('robot-deploy-videos');
-          container.innerHTML = '';
-          if (deploymentVideos.length < 2) {
-            container.innerHTML = '<span style="color: #b00;">Need at least two deployment videos.</span>';
-            return;
-          }
-          let [currentVideo1, currentVideo2] = getTwoDistinctRandomVideos(deploymentVideos);
-
-          function createVideoElement(src, onendedCallback) {
-            const video = document.createElement('video');
-            video.src = src;
-            video.style.height = '200px';
-            video.style.width = 'auto';
-            video.style.borderRadius = '0';
-            video.autoplay = true;
-            video.muted = true;
-            video.playsInline = true;
-            video.controls = false;
-            video.onended = onendedCallback;
-            video.onerror = function() {
-              video.style.display = 'none';
-              const errorMsg = document.createElement('span');
-              errorMsg.style.color = '#b00';
-              errorMsg.textContent = 'Could not load video: ' + src;
-              container.appendChild(errorMsg);
-            };
-            return video;
-          }
-
-          const video1 = createVideoElement(currentVideo1, function() {
-            let next;
-            do {
-              next = deploymentVideos[Math.floor(Math.random() * deploymentVideos.length)];
-            } while (next === currentVideo1 || next === currentVideo2);
-            currentVideo1 = next;
-            // Ensure not the same as video2
-            if (currentVideo1 === currentVideo2) {
-              // Find another
-              do {
-                currentVideo1 = deploymentVideos[Math.floor(Math.random() * deploymentVideos.length)];
-              } while (currentVideo1 === currentVideo2);
-            }
-            video1.src = currentVideo1;
-            video1.load();
-            video1.play();
-          });
-
-          const video2 = createVideoElement(currentVideo2, function() {
-            let next;
-            do {
-              next = deploymentVideos[Math.floor(Math.random() * deploymentVideos.length)];
-            } while (next === currentVideo2 || next === currentVideo1);
-            currentVideo2 = next;
-            // Ensure not the same as video1
-            if (currentVideo2 === currentVideo1) {
-              // Find another
-              do {
-                currentVideo2 = deploymentVideos[Math.floor(Math.random() * deploymentVideos.length)];
-              } while (currentVideo2 === currentVideo1);
-            }
-            video2.src = currentVideo2;
-            video2.load();
-            video2.play();
-          });
-
-          container.appendChild(video1);
-          container.appendChild(video2);
-        }
-        document.addEventListener('DOMContentLoaded', setupDeploymentVideosSideBySide);
-      </script>
 
     </div>
   </div>
 </section>
+
 
 
 <section class="section" style="padding-top: 0;">

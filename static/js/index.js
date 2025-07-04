@@ -75,44 +75,4 @@ $(document).ready(function() {
 
     bulmaSlider.attach();
 
-    // Video synchronization and scene transition
-    const scenes = ['outdoors', 'kitchen', 'c3', 'b2', 'bottles', 'cans'];
-    let currentSceneIndex = 0;
-
-    function showScene(sceneIndex) {
-        $('.video-row').hide();
-        const scene = scenes[sceneIndex];
-        const $currentRow = $(`.video-row[data-scene="${scene}"]`);
-        $currentRow.show();
-        
-        // Get all videos in the current row
-        const videos = $currentRow.find('video').get();
-        
-        // Reset and play all videos
-        videos.forEach(video => {
-            video.currentTime = 0;
-            video.play();
-        });
-
-        // Sync playback
-        videos.forEach(video => {
-            video.onplay = () => {
-                videos.forEach(v => {
-                    if (Math.abs(v.currentTime - video.currentTime) > 0.3) {
-                        v.currentTime = video.currentTime;
-                    }
-                });
-            };
-        });
-
-        // When videos end, show next scene
-        videos[0].onended = () => {
-            currentSceneIndex = (currentSceneIndex + 1) % scenes.length;
-            showScene(currentSceneIndex);
-        };
-    }
-
-    // Start with a random scene
-    currentSceneIndex = Math.floor(Math.random() * scenes.length);
-    showScene(currentSceneIndex);
 });
