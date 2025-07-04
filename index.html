@@ -503,7 +503,7 @@ let currentDeployToken = 0;
 
 <section class="section" style="padding-top: 0;">
   <!-- Ablation Study Section -->
-  <div class="container is-max-desktop" style="margin-bottom: 40px;">
+  <div class="container is-max-desktop" style="margin-bottom: 10px;">
     <div class="columns is-centered">
       <div class="column is-four-fifths" style="text-align: left; padding-left: 0;">
 <h3 style="font-size: 1.1em; font-weight: 600; margin-top: 0; margin-bottom: 20px;">What if we naively trained a policy on the human-aligned unsegmented data? ☹️</h3>
@@ -519,10 +519,37 @@ let currentDeployToken = 0;
         </div>
         In our ablation study, we found that the policy trained on human-aligned data failed to complete any tasks, despite often moving in sensible directions. This failure is likely due to a distribution shift in the observation space between training and deployment.
         <br><br>
-        Interestingly, the policy trained on segmented data performed well even when the robot was unsegmented at inference. We <b>hypothesize</b> that removing the human helped the model avoid overfitting to strong correlations between human and gripper actions, allowing it to focus on taking the learning signal from the task-relevant parts of the scene.
+        Interestingly, the policy trained on segmented data performed well even when the robot was unsegmented at inference. We <b>hypothesize</b> that removing the human helped the model avoid overfitting to strong correlations between human and gripper actions, and focusing on taking the learning signal from the task-relevant parts of the scene.
         <br><br>
-        <!-- We saw this to be evident from the attention maps coming from the vision encoders too: -->
+        This is also evident from the attention maps coming from our vision encoders:
 
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px 10px; margin: 18px 0 0 0; justify-items: start;">
+          <!-- Row 1 -->
+          <img src="attention_maps/unseg_model/0.jpg" style="width: 180px; height: 180px; object-fit: cover; background: #f0f0f0;" alt="Attention 1" />
+          <img src="attention_maps/unseg_model/1.jpg" style="width: 180px; height: 180px; object-fit: cover; background: #f0f0f0;" alt="Attention 2" />
+          <img src="attention_maps/unseg_model/2.jpg" style="width: 180px; height: 180px; object-fit: cover; background: #f0f0f0;" alt="Attention 3" />
+          <img src="attention_maps/unseg_model/3.jpg" style="width: 180px; height: 180px; object-fit: cover; background: #f0f0f0;" alt="Attention 4" />
+        </div>
+        <div style="font-size: 1em; color: #444; margin: 4px 0 16px 0; text-align: left;">a) Unsegmented model focusing on the embodiment</div>
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px 10px; margin: 0 0 0 0; justify-items: start;">
+          <!-- Row 2 -->
+          <img src="attention_maps/seg_model/seg_inf/0.jpg" style="width: 180px; height: 180px; object-fit: cover; background: #f0f0f0;" alt="Attention 5" />
+          <img src="attention_maps/seg_model/seg_inf/1.jpg" style="width: 180px; height: 180px; object-fit: cover; background: #f0f0f0;" alt="Attention 6" />
+          <img src="attention_maps/seg_model/seg_inf/2.jpg" style="width: 180px; height: 180px; object-fit: cover; background: #f0f0f0;" alt="Attention 7" />
+          <img src="attention_maps/seg_model/seg_inf/3.jpg" style="width: 180px; height: 180px; object-fit: cover; background: #f0f0f0;" alt="Attention 8" />
+        </div>
+        <div style="font-size: 1em; color: #444; margin: 4px 0 16px 0; text-align: left;">b) MV-UMI model focusing on the objects manipulated</div>
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px 10px; margin: 0 0 0 0; justify-items: start;">
+          <!-- Row 3 -->
+          <img src="attention_maps/seg_model/unseg_inf/0.jpg" style="width: 180px; height: 180px; object-fit: cover; background: #f0f0f0;" alt="Attention 9" />
+          <img src="attention_maps/seg_model/unseg_inf/1.jpg" style="width: 180px; height: 180px; object-fit: cover; background: #f0f0f0;" alt="Attention 10" />
+          <img src="attention_maps/seg_model/unseg_inf/2.jpg" style="width: 180px; height: 180px; object-fit: cover; background: #f0f0f0;" alt="Attention 11" />
+          <img src="attention_maps/seg_model/unseg_inf/3.jpg" style="width: 180px; height: 180px; object-fit: cover; background: #f0f0f0;" alt="Attention 12" />
+        </div>
+        <div style="font-size: 1em; color: #444; margin: 4px 0 20px 0; text-align: left;">c) MV-UMI model focusing on the objects manipulated (even when robot is unsegmented!)</div>
+        
+
+        
         <h3 style="font-size: 1.1em; font-weight: 600; margin-top: 10px; margin-bottom: 20px;">Why not stick the egocentric camera alone?</h3>
 
         <div style="display: flex; justify-content: center; align-items: flex-start; gap: 24px; margin: 12px 0 24px 0; width: 100%;">
@@ -531,22 +558,21 @@ let currentDeployToken = 0;
               <source src="results_videos/markers/fails/0_pov/1.mp4" type="video/mp4">
               Your browser does not support the video tag.
             </video>
-            <div style="font-size: 0.98em; color: #444; margin-top: 6px;">Egocentric camera did not provide enough context to find the cup</div>
+            <div style="font-size: 0.98em; color: #444; margin-top: 6px;">Unable to find the cup</div>
           </div>
           <div style="width: 48%; max-width: 600px; text-align: center;">
             <video loop autoplay muted playsinline style="width: 100%; max-height: 200px; height: auto; background: #f0f0f0;">
               <source src="results_videos/bottles/failures/0/0.mp4" type="video/mp4">
               Your browser does not support the video tag.
             </video>
-            <div style="font-size: 0.98em; color: #444; margin-top: 6px;">Egocentric camera did not provide enough context to find the empty bottles rack</div>
+            <div style="font-size: 0.98em; color: #444; margin-top: 6px;">Unable find the empty bottles rack</div>
           </div>
         </div>
       </div>
     </div>
   </div>
   <div class="container is-max-desktop">
-    <!-- Abstract. -->
-    <div class="columns is-centered has-text-centered">
+    <!-- <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
@@ -555,13 +581,12 @@ let currentDeployToken = 0;
           </p>
         </div>
       </div>
-    </div>
-    <!--/ Abstract. -->
+    </div> -->
 
     <!-- Paper video. -->
-    <div class="columns is-centered has-text-centered">
+    <div class="columns is-centered has-text-centered" style="margin-bottom: 10;">
       <div class="column is-four-fifths">
-        <h2 class="title is-3">Pipeline</h2>
+        <h2 class="title is-3">MV-UMI Pipeline</h2>
         <img src="./static/images/pipeline.jpg"
         alt="Nerfies teaser image"
         class="teaser-image">
