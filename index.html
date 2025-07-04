@@ -213,13 +213,19 @@
         let currentSceneIndex = 0;
         let autoAdvance = true;
 
+// Unique token to track the current scene for robust auto-advance
+let currentSceneToken = 0;
+
         function showScene(sceneName, manual = false) {
-          const sceneIndex = sceneOrder.indexOf(sceneName);
-          if (sceneIndex === -1) {
-            console.error(`Scene ${sceneName} not found in sceneOrder`);
-            return;
-          }
-          currentSceneIndex = sceneIndex;
+  const sceneIndex = sceneOrder.indexOf(sceneName);
+  if (sceneIndex === -1) {
+    console.error(`Scene ${sceneName} not found in sceneOrder`);
+    return;
+  }
+  currentSceneIndex = sceneIndex;
+  // Increment scene token to invalidate old onended handlers
+  currentSceneToken++;
+  const thisSceneToken = currentSceneToken;
 
           // Hide all video rows
           document.querySelectorAll('.video-row').forEach(row => {
@@ -245,28 +251,42 @@
 
           // Reset and start videos in the current scene
           const currentVideos = document.querySelectorAll(`.video-row[data-scene="${sceneName}"] video`);
-          currentVideos.forEach(video => {
-            video.currentTime = 0;
-            video.play().catch(e => {
-              console.log('Video autoplay failed:', e);
-            });
-          });
+  currentVideos.forEach(video => {
+    video.pause();
+    video.currentTime = 0;
+    // Wait for seek to complete before playing, to avoid flash of last frame
+    video.onseeked = function() {
+      video.onseeked = null;
+      video.play().catch(e => {
+        console.log('Video autoplay failed:', e);
+      });
+    };
+    // In case the video is already at 0, trigger play immediately
+    if (video.currentTime === 0) {
+      video.onseeked = null;
+      video.play().catch(e => {
+        console.log('Video autoplay failed:', e);
+      });
+    }
+  });
 
           // Remove previous event listeners
           currentVideos.forEach(video => {
             video.onended = null;
           });
 
-          // Set up auto-advance for all scenes
-          let endedCount = 0;
-          currentVideos.forEach(video => {
-            video.onended = function() {
-              endedCount++;
-              if (endedCount === currentVideos.length && autoAdvance) {
-                advanceScene();
-              }
-            };
-          });
+  // Set up auto-advance for all scenes, only if token matches
+  let endedCount = 0;
+  currentVideos.forEach(video => {
+    video.onended = function() {
+      // Only count if this is still the current scene
+      if (thisSceneToken !== currentSceneToken) return;
+      endedCount++;
+      if (endedCount === currentVideos.length && autoAdvance) {
+        advanceScene();
+      }
+    };
+  });
         }
 
         function advanceScene() {
@@ -278,8 +298,11 @@
         document.addEventListener('DOMContentLoaded', function() {
           document.querySelectorAll('.nav-dot').forEach(dot => {
             dot.addEventListener('click', () => {
+              // Temporarily disable autoAdvance to ignore old video onended events
               autoAdvance = false;
               showScene(dot.dataset.scene, true);
+              // Re-enable autoAdvance after scene is shown
+              setTimeout(() => { autoAdvance = true; }, 0);
             });
           });
           // Initialize with the first scene and enable auto-advance
@@ -383,12 +406,17 @@
 
         <script>
           // Cross-Embodiment Deployment Video Slider Logic
-          const deployOrder = [0, 1, 2, 3];
-          let currentDeployIndex = 0;
-          let deployAutoAdvance = true;
+
+const deployOrder = [0, 1, 2, 3];
+let currentDeployIndex = 0;
+let deployAutoAdvance = true;
+let currentDeployToken = 0;
 
           function showDeploy(idx, manual = false) {
-            currentDeployIndex = idx;
+  currentDeployIndex = idx;
+  // Increment deploy token to invalidate old onended handlers
+  currentDeployToken++;
+  const thisDeployToken = currentDeployToken;
             // Hide all deploy rows
             document.querySelectorAll('.deploy-row').forEach(row => {
               row.style.display = 'none';
@@ -409,21 +437,30 @@
             // Reset and start videos
             const currentVideos = document.querySelectorAll(`#deploy-row-${idx} video`);
             currentVideos.forEach(video => {
+              video.pause();
               video.currentTime = 0;
-              video.play().catch(e => {});
+              video.onseeked = function() {
+                video.onseeked = null;
+                video.play().catch(e => {});
+              };
+              if (video.currentTime === 0) {
+                video.onseeked = null;
+                video.play().catch(e => {});
+              }
             });
             // Remove previous event listeners
             currentVideos.forEach(video => { video.onended = null; });
-            // Set up auto-advance: advance only after all videos in the row have ended (same logic as above)
-            let endedCount = 0;
-            currentVideos.forEach(video => {
-              video.onended = function() {
-                endedCount++;
-                if (endedCount === currentVideos.length && deployAutoAdvance) {
-                  advanceDeploy();
-                }
-              };
-            });
+  // Set up auto-advance: advance only after all videos in the row have ended, only if token matches
+  let endedCount = 0;
+  currentVideos.forEach(video => {
+    video.onended = function() {
+      if (thisDeployToken !== currentDeployToken) return;
+      endedCount++;
+      if (endedCount === currentVideos.length && deployAutoAdvance) {
+        advanceDeploy();
+      }
+    };
+  });
           }
           function advanceDeploy() {
             currentDeployIndex = (currentDeployIndex + 1) % deployOrder.length;
@@ -432,8 +469,11 @@
           document.addEventListener('DOMContentLoaded', function() {
             document.querySelectorAll('.deploy-nav-dot').forEach((dot, i) => {
               dot.addEventListener('click', () => {
+                // Temporarily disable deployAutoAdvance to ignore old video onended events
                 deployAutoAdvance = false;
                 showDeploy(i, true);
+                // Re-enable deployAutoAdvance after deploy is shown
+                setTimeout(() => { deployAutoAdvance = true; }, 0);
               });
             });
             deployAutoAdvance = true;
