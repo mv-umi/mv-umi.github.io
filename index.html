@@ -502,6 +502,48 @@ let currentDeployToken = 0;
 
 
 <section class="section" style="padding-top: 0;">
+  <!-- Ablation Study Section -->
+  <div class="container is-max-desktop" style="margin-bottom: 40px;">
+    <div class="columns is-centered">
+      <div class="column is-four-fifths" style="text-align: left; padding-left: 0;">
+<h3 style="font-size: 1.1em; font-weight: 600; margin-top: 0; margin-bottom: 20px;">What if we naively trained a policy on the human-aligned unsegmented data? ☹️</h3>
+        <div style="display: flex; justify-content: center; align-items: center; gap: 24px; margin: 12px 0 24px 0; width: 100%;">
+          <video loop autoplay muted playsinline style="width: 48%; max-width: 600px; height: auto; background: #f0f0f0;">
+            <source src="results_videos/markers/fails/1_raw/1.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+          <video loop autoplay muted playsinline style="width: 48%; max-width: 600px; height: auto; background: #f0f0f0;">
+            <source src="results_videos/markers/fails/2_raw/1.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        In our ablation study, we found that the policy trained on human-aligned data failed to complete any tasks, despite often moving in sensible directions. This failure is likely due to a distribution shift in the observation space between training and deployment.
+        <br><br>
+        Interestingly, the policy trained on segmented data performed well even when the robot was unsegmented at inference. We <b>hypothesize</b> that removing the human helped the model avoid overfitting to strong correlations between human and gripper actions, allowing it to focus on taking the learning signal from the task-relevant parts of the scene.
+        <br><br>
+        <!-- We saw this to be evident from the attention maps coming from the vision encoders too: -->
+
+        <h3 style="font-size: 1.1em; font-weight: 600; margin-top: 10px; margin-bottom: 20px;">Why not stick the egocentric camera alone?</h3>
+
+        <div style="display: flex; justify-content: center; align-items: flex-start; gap: 24px; margin: 12px 0 24px 0; width: 100%;">
+          <div style="width: 48%; max-width: 600px; text-align: center;">
+            <video loop autoplay muted playsinline style="width: 100%; max-height: 200px; height: auto; background: #f0f0f0;">
+              <source src="results_videos/markers/fails/0_pov/1.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+            <div style="font-size: 0.98em; color: #444; margin-top: 6px;">Egocentric camera did not provide enough context to find the cup</div>
+          </div>
+          <div style="width: 48%; max-width: 600px; text-align: center;">
+            <video loop autoplay muted playsinline style="width: 100%; max-height: 200px; height: auto; background: #f0f0f0;">
+              <source src="results_videos/bottles/failures/0/0.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+            <div style="font-size: 0.98em; color: #444; margin-top: 6px;">Egocentric camera did not provide enough context to find the empty bottles rack</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="container is-max-desktop">
     <!-- Abstract. -->
     <div class="columns is-centered has-text-centered">
