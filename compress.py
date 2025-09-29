@@ -33,7 +33,5 @@ def compress_videos(root_dir):
 
 
 if __name__ == "__main__":
-    target_directory = (
-        "/Users/omarrayyann/Documents/mv-umi.github.io/data_collection_videos"
-    )
+    target_directory = "/Users/omarrayyann/Documents/mv-umi.github.io/results_videos"
     compress_videos(target_directory)
